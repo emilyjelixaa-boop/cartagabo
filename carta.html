@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carta Secreta 💖</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #fce4ec;
+    }
+
+    .screen {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .active {
+      display: flex;
+    }
+
+    .password-screen {
+      flex-direction: column;
+    }
+
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 60px);
+      gap: 10px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+
+    .key {
+      background-color: #f8bbd0;
+      border: none;
+      border-radius: 12px;
+      font-size: 20px;
+      padding: 15px;
+      cursor: pointer;
+    }
+
+    .key:hover {
+      background-color: #f48fb1;
+    }
+
+    .input-display {
+      font-size: 26px;
+      margin-top: 20px;
+      letter-spacing: 8px;
+    }
+
+    .notepad {
+      background-color: #fff0f6;
+      border: 3px solid #f8bbd0;
+      padding: 20px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 500px;
+      text-align: left;
+      font-family: "Comic Sans MS", cursive;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- PANTALLA DE CONTRASEÑA -->
+<div id="passwordScreen" class="screen password-screen active">
+  <h2>🔒 Ingresa la contraseña</h2>
+  <div class="input-display" id="inputDisplay">••••••</div>
+
+  <div class="keypad">
+    <button class="key" onclick="enterDigit('1')">1</button>
+    <button class="key" onclick="enterDigit('2')">2</button>
+    <button class="key" onclick="enterDigit('3')">3</button>
+
+    <button class="key" onclick="enterDigit('4')">4</button>
+    <button class="key" onclick="enterDigit('5')">5</button>
+    <button class="key" onclick="enterDigit('6')">6</button>
+
+    <button class="key" onclick="enterDigit('7')">7</button>
+    <button class="key" onclick="enterDigit('8')">8</button>
+    <button class="key" onclick="enterDigit('9')">9</button>
+
+    <button class="key" onclick="clearLast()">⌫</button>
+    <button class="key" onclick="enterDigit('0')">0</button>
+    <div></div>
+  </div>
+</div>
+
+<!-- CARTA -->
+<div id="notepadScreen" class="screen">
+  <div class="notepad">
+    <h3>📅 11 de Noviembre de 2023</h3>
+    <h4>💌 Mi querido Sancochito</h4>
+
+    <p>
+      Hola Sapiño te escribo esta carta jaja que mal educada,va de nuevo 
+      Hola Sapiño,como estas? espero tengas un lindo y no tan estresante dia ,Te escribo esta carta porque hoy me dieron ganas de decirte cosas que a veces no digo tan claro pero que sí siento.
+ <p>
+      Quiero que sepas que me gusta cómo eres conmigo.
+Me gusta cuando me hablas bonito.
+Me gusta cuando me haces reír incluso cuando estoy de mal humor.
+Me gusta sentir que, entre tantas personas, coincidimos tú y yo.
+No todo es perfecto, lo sé.
+Pero incluso en los momentos raros, yo valoro que estés en mi vida.
+A veces no soy la mejor diciendo lo que siento
+pero sí quiero que sepas que eres alguien importante para mí.
+Que me importas más de lo que a veces demuestro.
+Y que cuando pienso en futuro
+no me molesta imaginarte ahí.
+    </p>
+  <p>Gracias por los momentos, por las risas, por los abrazos, por los silencios que también dicen cosas.
+Y si te escribo todo estos
+es porque en medio de todo, de lo bueno y lo complicado
+te elijo. y claramente que ....
+    </p>
+
+    <p><strong>Te amo profundamente. ♡</strong></p>
+  </div>
+</div>
+<a href="https://www.canva.com/design/DAHBFCekSH4/axkFK2gitmfrH1BvjvzqlQ/view"
+   target="_blank" class="btn">
+  📸 Ver nuestro collage de fotos
+
+<script>
+  const correctPassword = "011123"; // 👈 CONTRASEÑA
+  let input = "";
+
+  function updateDisplay() {
+    document.getElementById("inputDisplay").textContent =
+      input.padEnd(6, "•");
+  }
+
+  function enterDigit(digit) {
+    if (input.length < 6) {
+      input += digit;
+      updateDisplay();
+    }
+
+    if (input.length === 6) {
+      if (input === correctPassword) {
+        document.getElementById("passwordScreen").classList.remove("active");
+        document.getElementById("notepadScreen").classList.add("active");
+      } else {
+        alert("Contraseña incorrecta 💔");
+        input = "";
+        updateDisplay();
+      }
+    }
+  }
+
+  function clearLast() {
+    input = input.slice(0, -1);
+    updateDisplay();
+  }
+</script>
+
+</body>
+</html>
